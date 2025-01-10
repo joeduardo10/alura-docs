@@ -2,8 +2,12 @@ import { atualizarTextoEditor } from "./documento.js";
 
 const socket = io();
 
-function emitirTextoEditor(texto) {
-    socket.emit("Texto_Editor", texto);
+function selecionardocumento(nome){
+    socket.emit("selecionar_documento", nome);
+}
+
+function emitirTextoEditor(dados){ 
+    socket.emit("Texto_Editor", dados);
 }
 
 socket.on("Texto_Editor_Clientes", (texto) => {
@@ -15,4 +19,4 @@ socket.on("disconnect", (motivo) => {
     Motivo: ${motivo}`);
   });
 
-export { emitirTextoEditor };
+export { emitirTextoEditor, selecionardocumento };
